@@ -8,6 +8,7 @@ public class SelectStageScene : MonoBehaviour {
 
     public int Page { set; get; }
     private int prevPage;
+    private int numberPerPage;
     public GameObject[] Buttons;
     public GameObject BackGround;
 
@@ -19,17 +20,18 @@ public class SelectStageScene : MonoBehaviour {
 	void Start () {
         Page = 0;
         prevPage = -1;
+        numberPerPage = 5;
         isStarted = false;
-        Buttons[10].GetComponent<PageButton>().isLeft = true;
+        Buttons[5].GetComponent<PageButton>().isLeft = true;
     }
 	
 	// Update is called once per frame
 	void Update () {
 		if(prevPage != Page)
         {
-            for(int i = 1; i <= 10; i++)
+            for(int i = 1; i <= numberPerPage; i++)
             {
-                if(!GameState.saveData.isPlayable[Page * 10 + i - 1])
+                if(!GameState.saveData.isPlayable[Page * numberPerPage + i - 1])
                 {
                     Buttons[i - 1].GetComponent<Button>().interactable = false;
                 }
@@ -38,8 +40,9 @@ public class SelectStageScene : MonoBehaviour {
                     Buttons[i - 1].GetComponent<Button>().interactable = true;
                 }
 
-                Buttons[i - 1].GetComponentInChildren<Text>().text = (Page * 10 + i).ToString();
-                Buttons[i - 1].GetComponent<NumberButton>().StageNumber = Page * 10 + i;
+                Buttons[i - 1].GetComponentInChildren<Text>().text = (Page * numberPerPage + i).ToString();
+                Buttons[i - 1].GetComponent<NumberButton>().StageNumber = Page * numberPerPage + i;
+                prevPage = Page;
             }
         }
 
@@ -60,20 +63,20 @@ public class SelectStageScene : MonoBehaviour {
 
         if(Page == 0)
         {
-            Buttons[10].GetComponent<Button>().interactable = false;
+            Buttons[5].GetComponent<Button>().interactable = false;
         }
         else
         {
-            Buttons[10].GetComponent<Button>().interactable = true;
+            Buttons[5].GetComponent<Button>().interactable = true;
         }
 
         if(Page == 4)
         {
-            Buttons[11].GetComponent<Button>().interactable = false;
+            Buttons[6].GetComponent<Button>().interactable = false;
         }
         else
         {
-            Buttons[11].GetComponent<Button>().interactable = true;
+            Buttons[6].GetComponent<Button>().interactable = true;
         }
 	}
 }

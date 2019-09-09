@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public class StageSelectButton : MonoBehaviour {
-    private float i = 0.0f;
+    static private float i = 0.0f;
     private bool isInitialized = false;
 	// Use this for initialization
 	void Start () {
